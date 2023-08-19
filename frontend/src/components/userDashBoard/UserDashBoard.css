@@ -1,0 +1,15 @@
+/* Sidebar.css */
+
+/* Add a hover effect for navigation links */
+.nav-dashboard .nav-link:hover {
+    background-color: #f8f9fa; /* Change to your desired hover background color */
+    color: #000; /* Change to your desired hover text color */
+  }
+  
+  /* Style the horizontal lines */
+  .nav-dashboard .nav-link + hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-color: #ccc;
+  }
+  
