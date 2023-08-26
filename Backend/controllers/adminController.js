@@ -3,9 +3,6 @@ import bcrypt from 'bcrypt'
 import User from '../model/user.js'
 const adminController={
 
-    send:async(req,res)=>{
-       console.log("backend ready");
-    },
     login: async (req, res) => {
         const { email, password } = req.body;
       
@@ -46,7 +43,6 @@ const adminController={
     userList:async(req,res)=>{
       try{
         const userData=await User.find({isAdmin:0})
-        console.log(userData);
         res.status(200).json(userData)
       }catch(error){
         console.log(error.message);
@@ -69,7 +65,6 @@ const adminController={
     userEdit:async(req,res)=>{
       try{
         const id=req.body.id
-        console.log(id);
         const user= await User.findOne({_id:id});
         res.status(200).json({
           name:user.name,

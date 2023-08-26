@@ -11,6 +11,7 @@ export default function DashBoardAccountDetails() {
   const userData=useSelector((state)=>state.login)
  const dispatch=useDispatch()
  const navigate=useNavigate()
+
   const [values, Setvalues] = useState({
     name:  userData.name,
     email: userData.email,
@@ -40,7 +41,7 @@ export default function DashBoardAccountDetails() {
 
   const handelSubmit=(event)=>{
     event.preventDefault();
-    
+
     axios.post("/updateProfile",formdata).then((response)=>{
       dispatch(loginUser({
         name:response.data.name,
@@ -64,7 +65,7 @@ export default function DashBoardAccountDetails() {
             <img src={`/assets/${values.image}`} className="rounded-circle" style={{ width: '150px' }} alt="Avatar" />
            
             <label htmlFor="inputGroupFile01" className="bi bi-upload">
-        <h5>Upload</h5>
+        <h6 style={{cursor:"pointer"}}>Upload Image</h6>
         <input
           type="file"
           id="inputGroupFile01"

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { loaduser, toggleUserEdit, userEdit } from '../../../Redux/userSlice'
 import { useNavigate } from 'react-router-dom'
-
+import {adminPath} from '../../../constants/constants'
 
 export default function AdminUserList() {
 
@@ -21,7 +21,7 @@ export default function AdminUserList() {
       const loginData = JSON.parse(localStorage.getItem('login'));
       if (loginData.login) {
         try {
-          const response = await axios.get('http://localhost:8000/admin/userList');
+          const response = await axios.get(`${adminPath}/userList`);
           dispatch(loaduser(response.data));
         } catch (error) {
           // Handle error here
@@ -38,7 +38,7 @@ export default function AdminUserList() {
   
   const handleDelete=async(id)=>{
     try{
-    const response= await axios.post('http://localhost:8000/admin/userDelete',{id})
+    const response= await axios.post(`${adminPath}/userDelete`,{id})
       dispatch(loaduser(response.data))
     }catch(error){
       console.log(error.message);
@@ -48,7 +48,7 @@ export default function AdminUserList() {
   const handleEdit = async (id) => {
     try {
       dispatch(toggleUserEdit())
-      const response = await axios.post(`http://localhost:8000/admin/userEdit`,{id});
+      const response = await axios.post(`${adminPath}/userEdit`,{id});
       dispatch(userEdit(response.data));
     } catch (error) {
         console.log("error");
@@ -56,8 +56,6 @@ export default function AdminUserList() {
     }
   }
   
-
-  console.log("USER LIST RENDER");
   return (
     <>
     <table className="custom-table">

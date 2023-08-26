@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import { logoutUser } from '../../../Redux/userSlice';
+import { clearUser, logoutUser } from '../../../Redux/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -17,6 +17,7 @@ const dispatch = useDispatch()
 const navigate= useNavigate()
 const logout=()=>{
   dispatch(logoutUser())
+  dispatch(clearUser())
   navigate('/admin/login')
 }
 

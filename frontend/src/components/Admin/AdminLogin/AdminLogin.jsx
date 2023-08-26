@@ -1,5 +1,5 @@
-import React, {  useState } from 'react'
-import {useDispatch} from 'react-redux'
+import React, {  useEffect, useState } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {MDBContainer, MDBInput}
 from 'mdb-react-ui-kit';
 import axios from 'axios'
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../Redux/userSlice';
-
+import {adminPath} from '../../../constants/constants'
 
 export default function AdminLogin() {
  
@@ -17,7 +17,15 @@ export default function AdminLogin() {
 const dispatch=useDispatch()
 const navigate=useNavigate()
 
+const isLogin = useSelector((state) => state.login);
 
+
+useEffect(() => {
+  console.log(isLogin.login);
+  if (isLogin.login) {
+    navigate('/'); // Redirect if user is already logged in
+  }
+}, [isLogin.login,navigate]);
 
     const handleSignIn=async()=>{
 
@@ -26,7 +34,7 @@ const navigate=useNavigate()
       return;
     }
 
-  await axios.post('http://localhost:8000/admin/login',{
+  await axios.post(`${adminPath}/login`,{
       email,
       password
     }).then((response=>{

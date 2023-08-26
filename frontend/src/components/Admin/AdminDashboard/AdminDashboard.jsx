@@ -20,9 +20,7 @@ export default function AdminDashboard() {
     }
 
 const dashboardActive=useSelector((state)=>state.userDashboard)
-console.log(dashboardActive.showCreateUser);
 
-console.log("dashboard renderd");
   return (
     <div style={{ width: "100%", height: "600px" }}>
     <main className="main">

@@ -2,6 +2,7 @@ import express from 'express';
 import userController from '../controllers/userControllers.js';
 import multer from 'multer'
 import path  from 'path';
+import checkAuth from '../middleware/Auth.js'
 const user_router = express.Router();
 
 user_router.use(express.json())

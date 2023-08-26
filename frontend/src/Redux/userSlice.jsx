@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 
-
 export const loginslice = createSlice({
     name: "loginUser",
     initialState: [],
@@ -21,7 +20,8 @@ export const loginslice = createSlice({
       };
         },
         logoutUser:(state,action)=>{
-            localStorage.clear();
+          localStorage.removeItem("login");
+          
             return [];
         }
       }
@@ -33,6 +33,9 @@ export const userSlice=createSlice({
   reducers:{
     loaduser:(state,action)=>{
       return action.payload
+    },
+    clearUser:(state,action)=>{
+      return []
     }
   }
 })
@@ -83,7 +86,7 @@ export const userDashboardSlice = createSlice({
 
 export const { toggleAdminUserList, toggleCreateUser ,toggleUserEdit } = userDashboardSlice.actions;
 export const { loginUser,logoutUser } = loginslice.actions;
-export const {loaduser} = userSlice.actions;
+export const {loaduser,clearUser} = userSlice.actions;
 export const {userEdit} = userDetailsEdit.actions
 export const loginsliceReducer = loginslice.reducer;
 export const userSliceReducer = userSlice.reducer;
